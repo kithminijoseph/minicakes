@@ -23,6 +23,7 @@ function Posts() {
           <p>{post.content}</p>
         </div>
       ))}
+      <h2 className="flex justify-center items-center h-screen bg-blue-500">Hello, Tailwind CSS!</h2>
     </div>
   );
 }
