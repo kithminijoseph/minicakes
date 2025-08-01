@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-"scripts": {
-  "start": "node server.js",
-  "build": "echo 'No build step needed'"
-},
+  "scripts": {
+    "start": "node server.js",
+    "build": "echo 'No build step needed'"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kithminijoseph/minicakes.git"
@@ -14,16 +14,18 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/kithminijoseph/minicakes/issues"
   },
   "homepage": "https://github.com/kithminijoseph/minicakes#readme",
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "body-parser": "^2.2.0",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.15.1"
   }
 }
