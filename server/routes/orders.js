@@ -1,21 +1,24 @@
-import express from 'express';
-import Order from '../models/Orders.js';
-import jwt from 'jsonwebtoken';
+import express from "express";
+import Order from "../models/Order.js";
 
 const router = express.Router();
 
-router.post('/', async (req, res) => {
-  const token = req.headers.authorization?.split(' ')[1];
+router.post("/", async (req, res) => {
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    const order = await Order.create({
-      userId: decoded.id,
-      items: req.body.items,
-      total: req.body.total
+    const { cake, customerName, address, dueDate } = req.body;
+
+    const newOrder = new Order({
+      cake,
+      customerName,
+      address,
+      dueDate
     });
-    res.status(201).json(order);
+
+    await newOrder.save();
+    res.status(201).json({ message: "Order saved!" });
   } catch (err) {
-    res.status(401).json({ error: 'Unauthorized' });
+    console.error(err);
+    res.status(500).json({ error: "Error saving order" });
   }
 });
 
