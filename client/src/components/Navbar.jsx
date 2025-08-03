@@ -1,15 +1,17 @@
 import React from 'react'
 import Logo from '../assets/logo.webp';
+import axios from 'axios';
 
 function Navbar() {
   const handleOrder = async () => {
     try {
-      const response = await axios.post("https://your-railway-backend-url/api/orders", {
+      const response = await axios.post("minicakes-production.up.railway.app/api/orders", {
         cake: "Vanilla Cake 1",
         customerName: "Test Customer",
         address: "Fake Address 123",
         dueDate: "2025-08-10"
       });
+      console.log('Order placed:', response.data);
       alert("Order placed!");
     } catch (err) {
       console.error("Error placing order:", err);
