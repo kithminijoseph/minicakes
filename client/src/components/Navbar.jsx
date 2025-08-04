@@ -5,7 +5,7 @@ import axios from 'axios';
 function Navbar() {
   const handleOrder = async () => {
     try {
-      const response = await axios.post("minicakes-production.up.railway.app/api/orders", {
+      const response = await axios.post("https://minicakes-production.up.railway.app/api/orders", {
         cake: "Vanilla Cake 1",
         customerName: "Test Customer",
         address: "Fake Address 123",
