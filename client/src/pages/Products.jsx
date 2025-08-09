@@ -3,8 +3,18 @@ import { useEffect, useState } from 'react';
 const Products = () => {
   const [cakes, setCakes] = useState([]);
   useEffect(() => {
-    fetch('https://minicakes-production.up.railway.app/api/cakes')
-      .then(res => res.json())
+    fetch('https://minicakes-production.up.railway.app/api/cakes', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        return res.json();
+      })
       .then(data => setCakes(data))
       .catch(err => console.error('Failed to load cakes:', err));
   }, []);
@@ -16,7 +26,6 @@ const Products = () => {
           <div key={cake._id} className="card">
             <img src={cake.images[0]} alt={cake.name} />
             <h2>{cake.name}</h2>
-            <p>From £{cake.variants[0].price}</p>
           </div>
         ))}
       </div>

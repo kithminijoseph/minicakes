@@ -3,13 +3,12 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
 
-app.options('*', cors());
-
 import cakeRoutes from './routes/cakes.js';
 import authRoutes from './routes/auth.js';
 import orderRoutes from './routes/orders.js';
 
 dotenv.config();
+
 const app = express();
 
 const allowedOrigins = [
@@ -18,21 +17,30 @@ const allowedOrigins = [
   'https://www.miniscakes.com',
 ];
 
-app.use(cors({
-  origin: function(origin, callback) {
-    // Allow requests with no origin (like mobile apps or curl)
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.indexOf(origin) === -1) {
-      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
-      return callback(new Error(msg), false);
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'), false);
     }
-    return callback(null, true);
   },
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
-}));
+  optionsSuccessStatus: 204, // Some legacy browsers choke on 200
+};
+
+app.use(cors(corsOptions));
+
+// ✅ Handle preflight requests explicitly
+app.options('*', cors(corsOptions));
 
 app.use(express.json());
+
+app.get('/ping', (req, res) => {
+  res.json({ message: 'pong' });
+});
 
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('MongoDB connected'))
@@ -40,6 +48,18 @@ mongoose.connect(process.env.MONGO_URI)
     console.error('MongoDB connection error:', err);
     process.exit(1);
   });
+
+app.get('/test-mongo', async (req, res) => {
+  try {
+    if (mongoose.connection.readyState === 1) {
+      res.json({ status: 'MongoDB connected!' });
+    } else {
+      res.status(500).json({ status: 'MongoDB not connected!' });
+    }
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 
 // Use routes
 app.use('/api/cakes', cakeRoutes);
