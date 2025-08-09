@@ -20,13 +20,14 @@ const Products = () => {
       .catch(err => console.error('Failed to load cakes:', err));
   }, []);
   return (
-    <div>
-      <h1>Our Cakes</h1>
-      <div className="grid">
+    <div className="h-screen bg-white">
+      <h1 className>Our Cakes</h1>
+      <div className="grid grid-cols-4 gap-4">
         {cakes.map(cake => (
           <div key={cake._id} className="card">
             <img src={cake.images[0]} alt={cake.name} />
-            <h2>{cake.name}</h2>
+            <p>{cake.name}</p>
+            <p>{cake.name}</p>
           </div>
         ))}
       </div>
