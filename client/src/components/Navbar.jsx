@@ -4,7 +4,7 @@ import Logo from '../assets/logo.webp';
 
 function Navbar() {
   return (
-    <nav className="h-screen bg-gradient-to-r from-rose-400 to-orange-300 shadow-md sticky top-0 z-50">
+    <nav className="bg-white shadow-md sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
         <img src={Logo} className="rounded-full h-30"/>
         <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">

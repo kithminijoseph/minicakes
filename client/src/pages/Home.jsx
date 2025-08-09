@@ -2,7 +2,7 @@ import React from 'react'
 
 function Home() {
   return (
-    <div class="h-screen bg-white">
+    <div className="h-screen bg-gradient-to-r from-rose-400 to-orange-300">
   </div>
 	)
 }
