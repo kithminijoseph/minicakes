@@ -9,9 +9,17 @@ import orderRoutes from './routes/orders.js';
 
 dotenv.config();
 
+
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: ['http://localhost:5173', 'https://minicakes-production.up.railway.app'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true, // if you use cookies/auth
+}));
 app.use(express.json());
+app.get('/ping', (req, res) => {
+  res.json({ message: 'pong' });
+});
 
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('MongoDB connected'))
