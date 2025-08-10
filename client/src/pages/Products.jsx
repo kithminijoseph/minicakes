@@ -22,18 +22,18 @@ const Products = () => {
   }, []);
 
   return (
-    <div className="h-screen bg-gradient-to-r from-rose-400 to-orange-300 p-8">
+    <div className="h-screen bg-gradient-to-r from-rose-200 to-orange-200 p-8">
       <div className="grid grid-cols-4 gap-6">
         {cakes.map(cake => (
           <div
             key={cake._id}
-            className="bg-white rounded-lg shadow-lg p-4 text-center hover:shadow-xl transition"
+            className="bg-white shadow-lg p-4 text-center hover:scale-110 transition-transform "
           >
             <Link to={`/cake/${cake._id}`}>
               <img
                 src={cake.images[0]}
                 alt={cake.name}
-                className="w-full h-60 object-cover rounded-lg mb-4 cursor-pointer"
+                className="w-full h-70 object-cover mb-4 cursor-pointer"
               />
             </Link>
             <p className="font-semibold text-lg">{cake.name}</p>

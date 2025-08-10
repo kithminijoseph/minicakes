@@ -11,10 +11,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products />} />
-        <Route path="/cake" element={<Cake />} />
+        <Route path="/cake/:id" element={<Cake />} />
       </Routes>
     </Router>
   );
 }
 
 export default App;
+//puniam kedikum

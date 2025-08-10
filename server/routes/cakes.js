@@ -22,7 +22,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// POST a new cake (admin only, maybe)
+
 router.post('/', async (req, res) => {
   try {
     const newCake = new Cake(req.body);
