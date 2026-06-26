@@ -1,4 +1,10 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Kapakana&display=swap');
+
+@theme {
+  --font-kapakana: "Kapakana", cursive;
+}
+
 :root {
   font-synthesis: none;
   text-rendering: optimizeLegibility;
