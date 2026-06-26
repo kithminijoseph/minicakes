@@ -1,13 +1,13 @@
+import React from "react";
 import bunting from "../../assets/bunting.svg";
 
 const DecorativeBunting = () => {
   return (
-    <div className="w-full">
+    <div className="w-full bg-yellow-200 overflow-hidden">
       <img
         src={bunting}
-        alt=""
-        aria-hidden="true"
-        className="w-full h-auto block"
+        alt="bunting decoration"
+        className="block w-full object-cover"
       />
     </div>
   );
